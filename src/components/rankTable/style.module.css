@@ -1,0 +1,52 @@
+.container {
+  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  height: 100%;
+  margin: auto;
+  padding: 20px;
+  color: white;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+}
+.nameWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  /* font-size: 32px; */
+  border: 1px solid #333;
+}
+
+th {
+  background-color: #393939;
+  color: #fff;
+  cursor: pointer;
+}
+
+tr {
+  font-size: larger;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+th:hover,
+tr:hover {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  max-width: 90%;
+  margin-top: 20px;
+}
