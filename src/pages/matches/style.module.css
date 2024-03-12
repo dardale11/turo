@@ -48,3 +48,47 @@
   align-items: center;
   align-content: center;
 }
+
+@media only screen and (max-width: 767px) {
+  .addButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    border: 0;
+  }
+
+  .switchButton {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    border: 0;
+  }
+}
+
+@media only screen and (max-width: 900px) and (orientation: landscape) {
+  .addButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    border: 0;
+  }
+
+  .switchButton {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    border: 0;
+  }
+}

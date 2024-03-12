@@ -58,7 +58,7 @@ const RankTable = ({ players }) => {
               <tr key={index}>
                 <td>
                   <div className={style.nameWrapper}>
-                    <img src={player.imageUrl} alt='a' />
+                    <img className={style.teamLogo} src={player.imageUrl} alt='a' />
                     {player.name}
                   </div>
                 </td>

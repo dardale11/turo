@@ -12,7 +12,7 @@ const MatchInfo = ({ matchData, onClick }: MatchInfoProps) => {
     <div className={style.container} onClick={onClick}>
       <div className={style.contentContainer}>
         <div className={style.playerContentContainer}>
-          <img src={matchData.homePlayer?.imageUrl} alt=':)' />
+          <img className={style.teamLogo} src={matchData.homePlayer?.imageUrl} alt=':)' />
           <p>{matchData.homePlayer?.name}</p>
           <p>{matchData.homeGoals}</p>
         </div>
