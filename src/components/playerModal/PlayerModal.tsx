@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { Match, Player } from '../../types';
+import { Player } from '../../types';
 import { useAPI } from '../../hooks/useAPI';
 
 const p: Player = {

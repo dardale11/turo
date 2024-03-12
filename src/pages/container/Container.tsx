@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { matchesMock, playersMock } from '../../mockData';
 import Matches from '../matches/Matches';
 import Rank from '../rank/Rank';
 import { useAPI } from '../../hooks/useAPI';

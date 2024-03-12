@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import style from './style.module.css';
-import { Player } from '../../types';
 
 const RankTable = ({ players }) => {
   const [sortBy, setSortBy] = useState('name');
