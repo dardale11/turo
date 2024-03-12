@@ -1,42 +1,57 @@
 import React, { useState } from 'react';
 import MatchInfo from '../../components/matchInfo/MatchInfo';
 import style from './style.module.css';
-import UpdatedMatch from '../../components/updateMatch/UpdateMatch';
+import MatchModal from '../../components/matchModal/MatchModal';
+import SecureModal from '../../components/secureModal/SecureModal';
+import { Match } from '../../types';
 
-const Matches = ({ matches, switchPage }) => {
+const newMatch: Match = { awayGoals: 0, homeGoals: 0, awayPlayer: null, homePlayer: null };
+
+const Matches = ({ matches, switchPage, allPlayers }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState();
+  const [isSecureModalOpen, setIsSecureModalOpen] = useState(false);
+  const [selectedMatch, setSelectedMatch] = useState(newMatch);
 
   const handleMatchSelect = (matchData) => {
     setSelectedMatch(matchData);
-    setIsModalOpen(true);
+    setIsSecureModalOpen(true);
   };
 
   const onCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedMatch(undefined);
+    setSelectedMatch(newMatch);
   };
 
   return (
     <div className={style.container}>
-      <button onClick={switchPage}>switch</button>
+      <button
+        className={style.switchButton}
+        onClick={switchPage}
+      >
+        {'->'}
+      </button>
       <button
         className={style.addButton}
         onClick={() => {
-          setIsModalOpen(true);
+          setSelectedMatch(newMatch);
+          setIsSecureModalOpen(true);
         }}
       >
         +
       </button>
-      {matches.map((matchData) => (
+      {matches.map((matchData, index) => (
         <MatchInfo
+          key={index}
           matchData={matchData}
           onClick={() => handleMatchSelect(matchData)}
         />
       ))}
       {isModalOpen && (
         // @ts-ignore
-        <UpdatedMatch onClose={onCloseModal} match={selectedMatch} />
+        <MatchModal onClose={onCloseModal} matchData={selectedMatch} allPlayers={allPlayers} />
+      )}
+      {isSecureModalOpen && (
+        <SecureModal onClose={() => setIsSecureModalOpen(false)} onSuccess={() => setIsModalOpen(true)} />
       )}
     </div>
   );
