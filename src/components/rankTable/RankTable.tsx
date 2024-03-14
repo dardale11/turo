@@ -2,7 +2,7 @@ import { useState } from 'react';
 import style from './style.module.css';
 
 const RankTable = ({ players }) => {
-  const [sortBy, setSortBy] = useState('name');
+  const [sortBy, setSortBy] = useState('total');
   const [sortOrder, setSortOrder] = useState('asc');
 
   const enhancedPlayers = players.map((player) => {
