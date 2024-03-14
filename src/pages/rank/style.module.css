@@ -2,11 +2,18 @@
   /* display: flex; */
   min-height: 100%;
 }
-
-.addButton {
+.addButtonWrapper {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
   position: fixed;
   top: 50px;
   right: 50px;
+  color: white;
+  font-size: 10px;
+}
+
+.addButton {
   font-size: 32px;
   padding: 24px 36px;
   border-radius: 100px;
@@ -16,6 +23,7 @@
 }
 
 .addButton:hover {
+  content: 'asdas';
   color: black;
   background-color: white;
 }
@@ -57,6 +65,23 @@
     border-radius: 100px;
     border: 0;
   }
+}
+
+.toggleButton {
+  margin-top: 16px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tableTitle {
+  margin-top: 50px;
+  color: white;
+  font-size: 36px;
 }
 
 @media only screen and (max-width: 900px) and (orientation: landscape) {

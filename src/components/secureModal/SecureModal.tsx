@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,15 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 const SecureModal = ({ onSuccess, onClose }) => {
   const [ans, setAns] = useState<string>('');
   const pass = 'kansai';
+  const inputRef = useRef<HTMLInputElement>(null); // Specify HTMLInputElement type
+
+  useEffect(() => {
+    // Focus on the input element when the component mounts
+    // if (inputRef.current) {
+    inputRef.current!.focus(); // Check if inputRef.current is not null
+    // }
+  }, []); // Empt
+
 
   const handleCheck = (e) => {
     e.preventDefault();
@@ -25,6 +34,7 @@ const SecureModal = ({ onSuccess, onClose }) => {
         </button>
         <p>new asian restaurant?</p>
         <input
+          ref={inputRef}
           className={style.formInput}
           type='text'
           value={ans}

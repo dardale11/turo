@@ -1,4 +1,7 @@
+export type House = 'A' | 'B' | 'C' | 'D' | 'M';
+
 export type Player = {
+  house: House;
   draws: number;
   goalsAgainst: number;
   goalsFor: number;

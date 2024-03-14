@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import MatchInfo from '../../components/matchInfo/MatchInfo';
 import style from './style.module.css';
 import MatchModal from '../../components/matchModal/MatchModal';
 import SecureModal from '../../components/secureModal/SecureModal';
-import { Match } from '../../types';
+import { Match, Player } from '../../types';
 
-const newMatch: Match = { awayGoals: 0, homeGoals: 0, awayPlayer: null, homePlayer: null };
+const m: Match = { awayGoals: 0, homeGoals: 0, awayPlayer: null, homePlayer: null };
 
-const Matches = ({ matches, switchPage, allPlayers }) => {
+type MatchProps = {
+  matches: Match[], switchPage: () => void, allPlayers: Player[], setMatches: Dispatch<SetStateAction<Match[]>>;
+};
+
+const Matches = ({ matches, switchPage, allPlayers, setMatches }: MatchProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecureModalOpen, setIsSecureModalOpen] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState(newMatch);
+  const [selectedMatch, setSelectedMatch] = useState(m);
 
   const handleMatchSelect = (matchData) => {
     setSelectedMatch(matchData);
@@ -19,7 +23,7 @@ const Matches = ({ matches, switchPage, allPlayers }) => {
 
   const onCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedMatch(newMatch);
+    setSelectedMatch(m);
   };
 
   return (
@@ -30,15 +34,18 @@ const Matches = ({ matches, switchPage, allPlayers }) => {
       >
         {'->'}
       </button>
-      <button
-        className={style.addButton}
-        onClick={() => {
-          setSelectedMatch(newMatch);
-          setIsSecureModalOpen(true);
-        }}
-      >
-        +
-      </button>
+      <div className={style.addButtonWrapper}>
+        <button
+          className={style.addButton}
+          onClick={() => {
+            setSelectedMatch(m);
+            setIsSecureModalOpen(true);
+          }}
+        >
+          +
+        </button>
+        add match
+      </div>
       {matches.map((matchData, index) => (
         <MatchInfo
           key={index}
@@ -47,8 +54,7 @@ const Matches = ({ matches, switchPage, allPlayers }) => {
         />
       ))}
       {isModalOpen && (
-        // @ts-ignore
-        <MatchModal onClose={onCloseModal} matchData={selectedMatch} allPlayers={allPlayers} />
+        <MatchModal onClose={onCloseModal} matchData={selectedMatch} allPlayers={allPlayers} setMatches={setMatches} />
       )}
       {isSecureModalOpen && (
         <SecureModal onClose={() => setIsSecureModalOpen(false)} onSuccess={() => setIsModalOpen(true)} />

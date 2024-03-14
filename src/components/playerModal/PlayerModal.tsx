@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useRef, useState, CSSProperties, Dispatch, SetStateAction } from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { Player } from '../../types';
+import { House, Player } from '../../types';
 import { useAPI } from '../../hooks/useAPI';
+import useFileUploader from '../../hooks/useFileUploader';
+import ClipLoader from "react-spinners/ClipLoader";
+import { PacmanLoader } from 'react-spinners';
 
 const p: Player = {
+  house: 'A',
   draws: 0,
   goalsAgainst: 0,
   goalsFor: 0,
@@ -16,20 +20,34 @@ const p: Player = {
   name: '',
 };
 
-const PlayerModal = ({ player = p, onClose }) => {
+type PlayerModalProps = {
+  player?: Player,
+  onClose: () => void,
+  setPlayers: Dispatch<SetStateAction<Player[]>>;
+};
+
+
+
+const PlayerModal = ({ player = p, onClose, setPlayers }: PlayerModalProps) => {
   const isNew = !player.name.length;
   const [name, setName] = useState(player.name);
-  const [imageUrl, setImageUrl] = useState(player.imageUrl);
+  const [house, setHouse] = useState(player.house);
+  const [loading, setLoading] = useState(false);
   const { addPlayer } = useAPI();
+  const { fileUploaderInput, handleUpload } = useFileUploader();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    const imageUrl = await handleUpload();
+    const updatedPlayer: Player = { ...player, name, imageUrl };
     if (isNew) {
-      addPlayer({ ...player, name, imageUrl });
+      addPlayer(updatedPlayer);
+      setPlayers((players) => [...players, updatedPlayer]);
     }
+    setLoading(false);
     onClose();
   };
-
 
 
   return (
@@ -50,18 +68,28 @@ const PlayerModal = ({ player = p, onClose }) => {
         </div>
 
         <div className={style.formLabelWrapper}>
+          <label className={style.formLabel}>House</label>
+          <select value={house} onChange={(e) => {
+            setHouse(e.target.value as House);
+          }}>
+            {['A', 'B', 'C', 'D'].map((houseOpt) => (
+              <option key={houseOpt} value={houseOpt}>
+                {houseOpt}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className={style.formLabelWrapper}>
           <label className={style.formLabel}>Image</label>
-          <input
-            className={style.formInput}
-            type='text'
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
+          {fileUploaderInput}
         </div>
         <button className={style.formButton} type='submit'>
           Update Player
         </button>
       </form>
+      <PacmanLoader color="#ffffff" size='250px' className={style.loading} loading={loading} />
+
     </div>
   );
 };

@@ -13,7 +13,6 @@ const Container = () => {
 
   useEffect(() => {
     initData();
-    console.log('CA::I???ng API');
   }, []);
 
 
@@ -28,13 +27,8 @@ const Container = () => {
       const playersArray = playersData.docs.map((doc) => doc.data());
       const matchesArray = matchesData.docs.map((doc) => doc.data());
 
-      console.log(playersArray);
-      console.log(matchesArray);
-
-      // @ts-ignore
-      setPlayers(playersArray);
-      // @ts-ignore
-      setMatches(matchesArray);
+      setPlayers(playersArray as Player[]);
+      setMatches(matchesArray as Match[]);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -43,8 +37,8 @@ const Container = () => {
 
   return (
     < >
-      {displayPageNum === 1 && <Matches matches={matches} switchPage={() => setDisplayPageNum(2)} allPlayers={players} />}
-      {displayPageNum === 2 && <Rank players={players} switchPage={() => setDisplayPageNum(1)} />}
+      {displayPageNum === 1 && <Matches matches={matches} switchPage={() => setDisplayPageNum(2)} setMatches={setMatches} allPlayers={players} />}
+      {displayPageNum === 2 && <Rank players={players} setPlayers={setPlayers} switchPage={() => setDisplayPageNum(1)} />}
     </>
   );
 };

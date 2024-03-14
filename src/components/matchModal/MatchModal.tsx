@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -8,12 +8,14 @@ import { useAPI } from '../../hooks/useAPI';
 type MatchModalProps = {
   matchData: Match,
   allPlayers: Player[],
+  setMatches: Dispatch<SetStateAction<Match[]>>,
   onClose: () => void,
 };
 
 const MatchModal = ({
   matchData,
   allPlayers,
+  setMatches,
   onClose,
 }: MatchModalProps) => {
   const [homePlayer, setHomePlayer] = useState<Player | null>(matchData.homePlayer);
@@ -29,8 +31,7 @@ const MatchModal = ({
       updatePlayerStats(homePlayer, homeGoals, awayGoals),
       updatePlayerStats(awayPlayer, awayGoals, homeGoals),
     ]);
-
-    // add match locally
+    setMatches((matches) => [...matches, match]);
   };
 
   const validate = () => {
