@@ -40,7 +40,7 @@ const PlayerModal = ({ player = p, onClose, setPlayers }: PlayerModalProps) => {
     e.preventDefault();
     setLoading(true);
     const imageUrl = await handleUpload();
-    const updatedPlayer: Player = { ...player, name, imageUrl };
+    const updatedPlayer: Player = { ...player, name, imageUrl, house };
     if (isNew) {
       addPlayer(updatedPlayer);
       setPlayers((players) => [...players, updatedPlayer]);
