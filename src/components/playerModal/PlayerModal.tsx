@@ -1,12 +1,11 @@
-import { useRef, useState, CSSProperties, Dispatch, SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { House, Player } from '../../types';
 import { useAPI } from '../../hooks/useAPI';
-import useFileUploader from '../../hooks/useFileUploader';
-import ClipLoader from "react-spinners/ClipLoader";
 import { PacmanLoader } from 'react-spinners';
+import useFileUploader from '../../hooks/useFileUploader';
 
 const p: Player = {
   house: 'A',
