@@ -3,7 +3,7 @@ import style from './style.module.css';
 
 const RankTable = ({ players }) => {
   const [sortBy, setSortBy] = useState('total');
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortOrder, setSortOrder] = useState('desc');
 
   const enhancedPlayers = players.map((player) => {
     return {
