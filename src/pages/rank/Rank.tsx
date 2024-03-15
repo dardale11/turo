@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import style from './style.module.css';
 import RankTable from '../../components/rankTable/RankTable';
 import PlayerModal from '../../components/playerModal/PlayerModal';

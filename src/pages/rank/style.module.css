@@ -45,28 +45,6 @@
   background-color: white;
 }
 
-@media only screen and (max-width: 767px) {
-  .addButton {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 100px;
-    border: 0;
-  }
-
-  .switchButton {
-    position: fixed;
-    top: 50%;
-    left: 10px;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 100px;
-    border: 0;
-  }
-}
-
 .toggleButton {
   margin-top: 16px;
   background-color: #007bff;
@@ -84,7 +62,8 @@
   font-size: 36px;
 }
 
-@media only screen and (max-width: 900px) and (orientation: landscape) {
+@media only screen and (max-width: 767px),
+  only screen and (max-width: 900px) and (orientation: landscape) {
   .addButton {
     position: fixed;
     top: 10px;
@@ -103,5 +82,13 @@
     padding: 8px 12px;
     border-radius: 100px;
     border: 0;
+  }
+
+  .addButtonWrapper {
+    right: 5px;
+  }
+
+  .tableTitle {
+    font-size: 24px;
   }
 }

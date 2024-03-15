@@ -42,3 +42,23 @@
     margin: 0;
   }
 }
+
+@media only screen and (max-width: 767px),
+  only screen and (max-width: 900px) and (orientation: landscape) {
+  .container {
+    max-width: 400px;
+    margin: 16px;
+    border-radius: 32px;
+    min-width: min-content;
+    img {
+      border-radius: 12px;
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  .playerContentContainer {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
