@@ -4,6 +4,8 @@ import style from './style.module.css';
 import MatchModal from '../../components/matchModal/MatchModal';
 import SecureModal from '../../components/secureModal/SecureModal';
 import { Match, Player } from '../../types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 
 const m: Match = { awayGoals: 0, homeGoals: 0, awayPlayer: null, homePlayer: null };
 
@@ -32,7 +34,7 @@ const Matches = ({ matches, switchPage, allPlayers, setMatches }: MatchProps) =>
         className={style.switchButton}
         onClick={switchPage}
       >
-        {'->'}
+        <FontAwesomeIcon icon={faRightLong} />
       </button>
       <div className={style.addButtonWrapper}>
         <button

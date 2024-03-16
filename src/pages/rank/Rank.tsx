@@ -4,6 +4,8 @@ import RankTable from '../../components/rankTable/RankTable';
 import PlayerModal from '../../components/playerModal/PlayerModal';
 import SecureModal from '../../components/secureModal/SecureModal';
 import { House, Player } from '../../types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 type RankProps = {
   players: Player[];
@@ -36,7 +38,7 @@ const Rank = ({ players, switchPage, setPlayers }: RankProps) => {
         add player
       </div>
       <button className={style.switchButton} onClick={switchPage}>
-        {'<-'}
+        <FontAwesomeIcon icon={faLeftLong} />
       </button>
       <button
         className={style.toggleButton}
